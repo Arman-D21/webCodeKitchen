@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Master-Detail View</title>
+  <link rel="stylesheet" type="text/css" href="scr/style.css">
+</head>
+<body>
+<button id="addBtn">Add New</button>
+<div class="container">
+  <table id="masterTable" border="1">
+    <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Function</th>
+      <th>Available</th>
+      <th>Contractor</th>
+      <th>Workload %</th>
+      <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Rows will be dynamically generated -->
+    </tbody>
+  </table>
+  <div id="detailView">
+    <h3>Details</h3>
+    <form id="detailForm">
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" name="firstName">
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" name="lastName">
+      <label for="function">Function:</label>
+      <select id="function" name="function">
+        <option value="Consultant">Consultant</option>
+        <option value="Architect">Architect</option>
+        <option value="Developer">Developer</option>
+        <option value="DevOps">DevOps</option>
+      </select>
+      <label for="available">Available:</label>
+      <input type="radio" id="availableYes" name="available" value="true"> Yes
+      <input type="radio" id="availableNo" name="available" value="false"> No
+      <label for="contractor">Contractor:</label>
+      <input type="checkbox" id="contractor" name="contractor">
+      <label for="workload">Workload:</label>
+      <input type="range" id="workload" name="workload" min="0" max="100">
+      <div class="buttons">
+        <button type="button" id="saveBtn">Save</button>
+        <button type="button" id="resetBtn">Reset</button>
+      </div>
+    </form>
+  </div>
+</div>
+<script src="scr/script.js"></script>
+</body>
+</html>
