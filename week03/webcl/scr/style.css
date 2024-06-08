@@ -23,6 +23,19 @@ body {
     text-align: left;
 }
 
+#masterTable tbody tr {
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#masterTable tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+#masterTable tbody tr.selected {
+    background-color: #d1e7fd;
+}
+
 #detailView {
     border: 1px solid #ddd;
     padding: 20px;
