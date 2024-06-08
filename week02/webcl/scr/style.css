@@ -1,0 +1,32 @@
+/* EXTERNAL CSS */
+.display-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* EXTERNAL CSS */
+.display {
+    position: relative;
+    width: 120px;
+    height: 300px;
+    background-color: black;
+    margin: 5px;
+}
+
+/* EXTERNAL CSS */
+.segment {
+    width: 20px;
+    height: 100px;
+    background-color: grey;
+    position: absolute;
+}
+
+/* EXTERNAL CSS */
+#a1, #a2, #a3 { transform: rotate(90deg); top: 0; left: 50px; }
+#b1, #b2, #b3 { transform: rotate(0deg); top: 50px; left: 100px; }
+#c1, #c2, #c3 { transform: rotate(0deg); top: 150px; left: 100px; }
+#d1, #d2, #d3 { transform: rotate(90deg); top: 200px; left: 50px; }
+#e1, #e2, #e3 { transform: rotate(0deg); top: 150px; left: 0; }
+#f1, #f2, #f3 { transform: rotate(0deg); top: 50px; left: 0; }
+#g1, #g2, #g3 { transform: rotate(90deg); top: 100px; left: 50px; }
