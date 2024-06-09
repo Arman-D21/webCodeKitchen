@@ -3,12 +3,29 @@ let selectedRow = null;
 document.getElementById("addBtn").addEventListener("click", () => {
     const table = document.getElementById("masterTable").getElementsByTagName('tbody')[0];
     const newRow = table.insertRow();
-    for (let i = 0; i < 6; i++) {
-        newRow.insertCell(i).innerHTML = "";
-    }
-    const deleteCell = newRow.insertCell(6);
-    deleteCell.innerHTML = '<button onclick="deleteRow(this)">Delete</button>';
+
+    newRow.innerHTML = `
+        <td><input type="text" value=""></td>
+        <td><input type="text" value=""></td>
+        <td>
+            <select>
+                <option value="Consultant">Consultant</option>
+                <option value="Architect">Architect</option>
+                <option value="Developer">Developer</option>
+                <option value="DevOps">DevOps</option>
+            </select>
+        </td>
+        <td><input type="checkbox"></td>
+        <td><input type="checkbox"></td>
+        <td><input type="number" min="0" max="100" value="0"></td>
+        <td><button onclick="deleteRow(this)">Delete</button></td>
+    `;
+
     newRow.addEventListener("click", () => selectRow(newRow));
+    newRow.querySelectorAll('input, select').forEach(input => {
+        input.addEventListener('blur', updateDetailView);
+    });
+
     selectRow(newRow);
 });
 
@@ -24,22 +41,28 @@ function selectRow(row) {
     }
     selectedRow = row;
     row.classList.add("selected");
-    document.getElementById("firstName").value = row.cells[0].innerHTML;
-    document.getElementById("lastName").value = row.cells[1].innerHTML;
-    document.getElementById("function").value = row.cells[2].innerHTML;
-    document.querySelector(`input[name="available"][value="${row.cells[3].innerHTML}"]`).checked = true;
-    document.getElementById("contractor").checked = row.cells[4].innerHTML === "true";
-    document.getElementById("workload").value = row.cells[5].innerHTML;
+    updateDetailView();
+}
+
+function updateDetailView() {
+    if (selectedRow) {
+        document.getElementById("firstName").value = selectedRow.cells[0].querySelector('input').value;
+        document.getElementById("lastName").value = selectedRow.cells[1].querySelector('input').value;
+        document.getElementById("function").value = selectedRow.cells[2].querySelector('select').value;
+        document.querySelector(`input[name="available"][value="${selectedRow.cells[3].querySelector('input').checked}"]`).checked = true;
+        document.getElementById("contractor").checked = selectedRow.cells[4].querySelector('input').checked;
+        document.getElementById("workload").value = selectedRow.cells[5].querySelector('input').value;
+    }
 }
 
 document.getElementById("saveBtn").addEventListener("click", () => {
     if (selectedRow) {
-        selectedRow.cells[0].innerHTML = document.getElementById("firstName").value;
-        selectedRow.cells[1].innerHTML = document.getElementById("lastName").value;
-        selectedRow.cells[2].innerHTML = document.getElementById("function").value;
-        selectedRow.cells[3].innerHTML = document.querySelector('input[name="available"]:checked').value;
-        selectedRow.cells[4].innerHTML = document.getElementById("contractor").checked;
-        selectedRow.cells[5].innerHTML = document.getElementById("workload").value;
+        selectedRow.cells[0].querySelector('input').value = document.getElementById("firstName").value;
+        selectedRow.cells[1].querySelector('input').value = document.getElementById("lastName").value;
+        selectedRow.cells[2].querySelector('select').value = document.getElementById("function").value;
+        selectedRow.cells[3].querySelector('input').checked = document.querySelector('input[name="available"]:checked').value === "true";
+        selectedRow.cells[4].querySelector('input').checked = document.getElementById("contractor").checked;
+        selectedRow.cells[5].querySelector('input').value = document.getElementById("workload").value;
     }
 });
 
